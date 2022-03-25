@@ -9,8 +9,9 @@ body {
 }
 
 .form-control::placeholder {
-  color: #fff;
+  color: rgb(175, 175, 175);
   font-family: "PT Sans", sans-serif;
+
 }
 
 .form-control:focus {
@@ -20,8 +21,12 @@ body {
 }
 
 .background-link {
-  padding: 2.5rem;
+  padding: 2rem 2.5rem;
+  padding-bottom: 1rem;
   background: rgba(126, 126, 126, 0.527);
   border-radius: 1rem;
   border: 7px solid rgba(163, 163, 163, 0.527);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
