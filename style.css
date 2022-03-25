@@ -30,3 +30,17 @@ body {
   flex-direction: column;
   justify-content: center;
 }
+
+.toast {
+  border-radius: 0.8rem;
+}
+
+.toast-header {
+  border-radius: 1rem 1rem 0 0;
+  background: rgba(180, 180, 180, 0.527);;
+}
+
+.toast-body {
+  background-color: rgb(136, 136, 136);
+  border-radius: 0 0 0.4rem 0.4rem;
+}

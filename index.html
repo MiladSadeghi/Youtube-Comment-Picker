@@ -12,7 +12,7 @@
   <title>Youtube Comment Picker</title>
 </head>
 
-<body class="bg-dark">
+<body class="bg-dark position-relative">
 
   <section class="min-vh-100 d-flex align-items-center justify-content-center w-100">
     <div class="container">
@@ -26,7 +26,7 @@
               <h5 class="text-muted"><span>0</span> Comments</h5>
             </div>
             <div class="col-md-6 text-md-end">
-              <button class="btn btn-primary">Pick Winner</button>
+              <button id="pickWinner" class="btn btn-primary">Pick Winner</button>
             </div>
           </div>
         </div>
@@ -39,6 +39,32 @@
       </div>
     </div>
   </section>
+
+  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11;">
+    <div id="wrongLink" class="toast" class="rounded-top" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <i class="bi bi-x-square-fill text-danger"></i>
+        <strong class="me-auto ms-2">incorrect</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body text-white bg-danger">
+        Your Video Link Incorrect!.
+      </div>
+    </div>
+  </div>
+
+  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11;">
+    <div id="correctLink" class="toast" class="rounded-top" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <i class="bi bi-check-square-fill text-success"></i>
+        <strong class="me-auto ms-2">Correct!</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body text-white bg-success">
+        Your Video Link Correct! Data Collection In Progress, Please Wait.
+      </div>
+    </div>
+  </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"></script>
