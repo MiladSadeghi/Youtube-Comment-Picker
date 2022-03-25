@@ -7,3 +7,21 @@
 body {
   font-family: "PT Sans", sans-serif;
 }
+
+.form-control::placeholder {
+  color: #fff;
+  font-family: "PT Sans", sans-serif;
+}
+
+.form-control:focus {
+  border-color: #9e9e9e;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(165, 165, 165, 0.25);
+}
+
+.background-link {
+  padding: 2.5rem;
+  background: rgba(126, 126, 126, 0.527);
+  border-radius: 1rem;
+  border: 7px solid rgba(163, 163, 163, 0.527);
+}
