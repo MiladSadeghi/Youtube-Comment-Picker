@@ -2,6 +2,9 @@ const pickWinnerBtn = document.querySelector('#pickWinner');
 const correctLink = document.getElementById('correctLink')
 const wrongLink = document.getElementById('wrongLink')
 const toastBody = document.querySelectorAll('.toast-body');
+const CommentCount = document.getElementById('commentCount');
+let tokens = {};
+let nextPageToken;
 
 class Youtube {
   getID(link) {
@@ -27,11 +30,29 @@ class Youtube {
     }
   }
 
+  async getDataFromAPI(APILINK) {
+    const response = await fetch(APILINK);
+    const data = await response.json();
+    nextPageToken = data.nextPageToken;
+    tokens[data.nextPageToken] = data;
+    (async () => {
+      while (nextPageToken) {
+        let response = await fetch(`https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet&maxResults=100&pageToken=${nextPageToken}&videoId=${this.videoID}&key=AIzaSyBTHs15QeMrH3aZxzDuvW9QEwoZyAsEAVE`);
+        let data = await response.json();
+        nextPageToken = data.nextPageToken;
+        tokens[data.nextPageToken] = data;
+        if (!nextPageToken) {
+          break;
+        }
+      }
+    })();
+  }
+
   pickwinner() {
     if (this.checkLink()) {
-
+      let api = `https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet&maxResults=100&videoId=${this.videoID}&key=AIzaSyBTHs15QeMrH3aZxzDuvW9QEwoZyAsEAVE`
+      this.getDataFromAPI(api);
     }
-
   }
 }
 
