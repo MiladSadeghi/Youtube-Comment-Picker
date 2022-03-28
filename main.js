@@ -3,8 +3,10 @@ const correctLink = document.getElementById('correctLink')
 const wrongLink = document.getElementById('wrongLink')
 const toastBody = document.querySelectorAll('.toast-body');
 const CommentCount = document.querySelector('#CommentCount');
+const showResultSection = document.querySelector("#Enter")
 let tokens = {};
 let nextPageToken;
+let keyLengh;
 
 class Youtube {
   getID(link) {
@@ -30,7 +32,13 @@ class Youtube {
     }
   }
 
+  minmaxRandomNumber(min,max) {
+    return Math.floor(Math.random() * ((max-1) - min + 1)) + min;
+  }
+
   async getDataFromAPI(APILINK) {
+    tokens = {}
+    CommentCount.textContent = 0;
     const response = await fetch(APILINK);
     const data = await response.json();
     nextPageToken = data.nextPageToken;
@@ -47,6 +55,18 @@ class Youtube {
           break;
         }
       }
+      let randomKey = () => {
+        if(Object.keys(tokens).length != 1) {
+          let randomValue = this.minmaxRandomNumber(0, Object.keys(tokens).length - 1)
+          keyLengh = Object.values(tokens)[randomValue].items.length
+          return Object.values(tokens)[randomValue]
+        } else {
+          keyLengh = Object.values(tokens)[0].items.length
+          return Object.values(tokens)[0]
+        }
+      }
+      let randomComment = randomKey().items[this.minmaxRandomNumber(0, keyLengh)];
+      
     })();
   }
 
