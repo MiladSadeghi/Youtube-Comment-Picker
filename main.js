@@ -66,7 +66,19 @@ class Youtube {
         }
       }
       let randomComment = randomKey().items[this.minmaxRandomNumber(0, keyLengh)];
-      
+      showResultSection.innerHTML = `
+      <div class="row">
+        <div class="col d-flex align-items-center">
+          <img class="img-fluid" src="${randomComment.snippet.topLevelComment.snippet.authorProfileImageUrl}">
+        </div>
+        <div class="col d-flex align-items-center">
+          <a class="text-white fs-4" target="_blank" href="${randomComment.snippet.topLevelComment.snippet.authorChannelUrl}">${randomComment.snippet.topLevelComment.snippet.authorDisplayName} <i class="bi bi-box-arrow-up-right fs-6"></i></a>
+        </div>
+        <div class="col d-flex align-items-center">
+          <p class="text-white m-0">${randomComment.snippet.topLevelComment.snippet.textOriginal}</p>
+        </div>
+      </div>
+      `
     })();
   }
 
