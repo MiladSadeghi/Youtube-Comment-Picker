@@ -2,7 +2,7 @@ const pickWinnerBtn = document.querySelector('#pickWinner');
 const correctLink = document.getElementById('correctLink')
 const wrongLink = document.getElementById('wrongLink')
 const toastBody = document.querySelectorAll('.toast-body');
-const CommentCount = document.getElementById('commentCount');
+const CommentCount = document.querySelector('#CommentCount');
 let tokens = {};
 let nextPageToken;
 
@@ -35,12 +35,14 @@ class Youtube {
     const data = await response.json();
     nextPageToken = data.nextPageToken;
     tokens[data.nextPageToken] = data;
+    CommentCount.textContent = parseInt(CommentCount.textContent) + data.pageInfo.totalResults;
     (async () => {
       while (nextPageToken) {
         let response = await fetch(`https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet&maxResults=100&pageToken=${nextPageToken}&videoId=${this.videoID}&key=AIzaSyBTHs15QeMrH3aZxzDuvW9QEwoZyAsEAVE`);
         let data = await response.json();
         nextPageToken = data.nextPageToken;
         tokens[data.nextPageToken] = data;
+        CommentCount.textContent = parseInt(CommentCount.textContent) + data.pageInfo.totalResults;
         if (!nextPageToken) {
           break;
         }
